@@ -324,6 +324,20 @@ namespace trklet {
     //have the factor if 2
     double krprojshiftdisk() const { return 2 * kr(); }
 
+    //diskSpacingCut
+    static constexpr double diskSpacingCut[3] = {63.7, 67.7, 76.8};
+
+    //barrelSpacingCut
+    static constexpr double barrelSpacingCut[6] = {15.0,25.0,31.5,33.3,70.0,120.0};
+
+    //bendcut
+    double bendcutPSdiskME = 1.5;
+    double bendcut2SdiskME = 1.5;
+    double bendcutbarrelTE = 1.5;
+    double bendcutdiskTE = 2.0;
+    int nbitszL123=12;
+    int nbitszL456=8;
+
   private:
     std::string DTCLinkFile_;
     std::string moduleCablingFile_;
@@ -332,6 +346,7 @@ namespace trklet {
     std::string processingModulesFile_;
     std::string memoryModulesFile_;
     std::string wiresFile_;
+
 
     double rcrit_{55.0};  // critical radius for the hourglass configuration
 
@@ -355,7 +370,7 @@ namespace trklet {
     unsigned int nbitszprojderL123_{10};
     unsigned int nbitszprojderL456_{9};
 
-    std::set<unsigned int> useseeding_{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    std::set<unsigned int> useseeding_{7};
 
     std::array<unsigned int, N_LAYER + N_DISK> nbitsallstubs_{{3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}};
     std::array<unsigned int, N_LAYER + N_DISK> nbitsvmme_{{2, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2}};
@@ -365,8 +380,8 @@ namespace trklet {
          {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1}}}};
 
     std::array<std::array<double, 8>, 2> bendcutte_{
-        {{{1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 1.25}},    //inner (2 = #stubs/tracklet)
-         {{1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 1.25}}}};  //outer
+        {{{1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 1.25}},        //inner (2 = #stubs/tracklet)
+      {{1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 1.25, 1.25}}}};  //outer
 
     std::array<double, N_LAYER + N_DISK> bendcutme_{{2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 1.5, 1.5, 1.5, 1.5, 1.5}};
 
